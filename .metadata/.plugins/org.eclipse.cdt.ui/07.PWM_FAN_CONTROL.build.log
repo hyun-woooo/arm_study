@@ -1,0 +1,67 @@
+09:15:55 **** Incremental Build of configuration Debug for project 07.PWM_FAN_CONTROL ****
+make -j24 all 
+arm-none-eabi-gcc "../Core/Src/dcmotor.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F429xx -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/dcmotor.d" -MT"Core/Src/dcmotor.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/dcmotor.o"
+../Core/Src/dcmotor.c: In function 'dcmotor_pwm_control':
+../Core/Src/dcmotor.c:39:2: warning: implicit declaration of function 'swit_led' [-Wimplicit-function-declaration]
+   39 |  swit_led(swit_flag,pwm_start_flag);
+      |  ^~~~~~~~
+../Core/Src/dcmotor.c: At top level:
+../Core/Src/dcmotor.c:49:6: warning: conflicting types for 'swit_led'
+   49 | void swit_led(uint8_t swit_flag,uint8_t pwm_start_flag)
+      |      ^~~~~~~~
+../Core/Src/dcmotor.c:39:2: note: previous implicit declaration of 'swit_led' was here
+   39 |  swit_led(swit_flag,pwm_start_flag);
+      |  ^~~~~~~~
+../Core/Src/dcmotor.c: In function 'print_lcd':
+../Core/Src/dcmotor.c:77:3: warning: implicit declaration of function 'sprintf' [-Wimplicit-function-declaration]
+   77 |   sprintf(lcd_buff,"s:%4ds r:%4ds",set_time,remain_time);
+      |   ^~~~~~~
+../Core/Src/dcmotor.c:77:3: warning: incompatible implicit declaration of built-in function 'sprintf'
+../Core/Src/dcmotor.c:3:1: note: include '<stdio.h>' or provide a declaration of 'sprintf'
+    2 | #include "dcmotor.h"
+  +++ |+#include <stdio.h>
+    3 | 
+../Core/Src/dcmotor.c:78:14: warning: pointer targets in passing argument 1 of 'lcd_string' differ in signedness [-Wpointer-sign]
+   78 |   lcd_string(lcd_buff);
+      |              ^~~~~~~~
+      |              |
+      |              char *
+In file included from ../Core/Inc/dcmotor.h:3,
+                 from ../Core/Src/dcmotor.c:2:
+../Core/Inc/i2c_lcd.h:23:26: note: expected 'uint8_t *' {aka 'unsigned char *'} but argument is of type 'char *'
+   23 | void lcd_string(uint8_t *str);
+      |                 ~~~~~~~~~^~~
+../Core/Src/dcmotor.c:82:15: warning: pointer targets in passing argument 1 of 'lcd_string' differ in signedness [-Wpointer-sign]
+   82 |    lcd_string("X +10 +20 -10");
+      |               ^~~~~~~~~~~~~~~
+      |               |
+      |               char *
+In file included from ../Core/Inc/dcmotor.h:3,
+                 from ../Core/Src/dcmotor.c:2:
+../Core/Inc/i2c_lcd.h:23:26: note: expected 'uint8_t *' {aka 'unsigned char *'} but argument is of type 'char *'
+   23 | void lcd_string(uint8_t *str);
+      |                 ~~~~~~~~~^~~
+../Core/Src/dcmotor.c:86:15: warning: pointer targets in passing argument 1 of 'lcd_string' differ in signedness [-Wpointer-sign]
+   86 |    lcd_string("O +10 +20 -10");
+      |               ^~~~~~~~~~~~~~~
+      |               |
+      |               char *
+In file included from ../Core/Inc/dcmotor.h:3,
+                 from ../Core/Src/dcmotor.c:2:
+../Core/Inc/i2c_lcd.h:23:26: note: expected 'uint8_t *' {aka 'unsigned char *'} but argument is of type 'char *'
+   23 | void lcd_string(uint8_t *str);
+      |                 ~~~~~~~~~^~~
+arm-none-eabi-gcc -o "07.PWM_FAN_CONTROL.elf" @"objects.list"   -mcpu=cortex-m4 -T"D:\gyuwon\source\STM32F429ZI\07.PWM_FAN_CONTROL\STM32F429ZITX_FLASH.ld" --specs=nosys.specs -Wl,-Map="07.PWM_FAN_CONTROL.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: 07.PWM_FAN_CONTROL.elf
+ 
+arm-none-eabi-size   07.PWM_FAN_CONTROL.elf 
+arm-none-eabi-objdump -h -S  07.PWM_FAN_CONTROL.elf  > "07.PWM_FAN_CONTROL.list"
+   text	   data	    bss	    dec	    hex	filename
+  36120	    132	   4940	  41192	   a0e8	07.PWM_FAN_CONTROL.elf
+Finished building: default.size.stdout
+ 
+Finished building: 07.PWM_FAN_CONTROL.list
+ 
+
+09:15:55 Build Finished. 0 errors, 7 warnings. (took 531ms)
+

@@ -1,0 +1,39 @@
+11:26:06 **** Incremental Build of configuration Debug for project 05.TIMER_DHT11_ULTRASONIC ****
+make -j24 all 
+arm-none-eabi-gcc "../Core/Src/DHT11.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F429xx -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/DHT11.d" -MT"Core/Src/DHT11.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/DHT11.o"
+../Core/Src/DHT11.c: In function 'DHT11_main':
+../Core/Src/DHT11.c:20:29: warning: variable 'd_Tmp' set but not used [-Wunused-but-set-variable]
+   20 |  uint8_t i_RH, d_RH, i_Tmp, d_Tmp;
+      |                             ^~~~~
+../Core/Src/DHT11.c:20:16: warning: variable 'd_RH' set but not used [-Wunused-but-set-variable]
+   20 |  uint8_t i_RH, d_RH, i_Tmp, d_Tmp;
+      |                ^~~~
+../Core/Src/DHT11.c: In function 'DHT11_processing':
+../Core/Src/DHT11.c:72:14: warning: pointer targets in passing argument 1 of 'lcd_string' differ in signedness [-Wpointer-sign]
+   72 |   lcd_string(DHT11_lcd_buff);
+      |              ^~~~~~~~~~~~~~
+      |              |
+      |              char *
+../Core/Src/DHT11.c:10:33: note: expected 'uint8_t *' {aka 'unsigned char *'} but argument is of type 'char *'
+   10 | extern void lcd_string(uint8_t *str);
+      |                        ~~~~~~~~~^~~
+../Core/Src/DHT11.c:51:29: warning: variable 'd_Tmp' set but not used [-Wunused-but-set-variable]
+   51 |  uint8_t i_RH, d_RH, i_Tmp, d_Tmp;
+      |                             ^~~~~
+../Core/Src/DHT11.c:51:16: warning: variable 'd_RH' set but not used [-Wunused-but-set-variable]
+   51 |  uint8_t i_RH, d_RH, i_Tmp, d_Tmp;
+      |                ^~~~
+arm-none-eabi-gcc -o "05.TIMER_DHT11_ULTRASONIC.elf" @"objects.list"   -mcpu=cortex-m4 -T"D:\gyuwon\source\STM32F429ZI\05.TIMER_DHT11_ULTRASONIC\STM32F429ZITX_FLASH.ld" --specs=nosys.specs -Wl,-Map="05.TIMER_DHT11_ULTRASONIC.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: 05.TIMER_DHT11_ULTRASONIC.elf
+ 
+arm-none-eabi-size   05.TIMER_DHT11_ULTRASONIC.elf 
+arm-none-eabi-objdump -h -S  05.TIMER_DHT11_ULTRASONIC.elf  > "05.TIMER_DHT11_ULTRASONIC.list"
+   text	   data	    bss	    dec	    hex	filename
+  33168	    124	   4764	  38056	   94a8	05.TIMER_DHT11_ULTRASONIC.elf
+Finished building: default.size.stdout
+ 
+Finished building: 05.TIMER_DHT11_ULTRASONIC.list
+ 
+
+11:26:07 Build Finished. 0 errors, 5 warnings. (took 518ms)
+

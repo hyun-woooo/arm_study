@@ -1,0 +1,211 @@
+20:37:47 **** Incremental Build of configuration Debug for project 04.TIMER_UART ****
+make -j24 all 
+arm-none-eabi-gcc "../Core/Src/uart.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F429xx -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/uart.d" -MT"Core/Src/uart.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/uart.o"
+../Core/Src/uart.c: In function 'HAL_UART_RxCpltCallback':
+../Core/Src/uart.c:58:4: warning: implicit declaration of function 'printf' [-Wimplicit-function-declaration]
+   58 |    printf("over flow\n");
+      |    ^~~~~~
+../Core/Src/uart.c:58:4: warning: incompatible implicit declaration of built-in function 'printf'
+../Core/Src/uart.c:2:1: note: include '<stdio.h>' or provide a declaration of 'printf'
+    1 | #include "uart.h"
+  +++ |+#include <stdio.h>
+    2 | 
+../Core/Src/uart.c:69:6: warning: incompatible implicit declaration of built-in function 'printf'
+   69 |      printf("%s reserve\n" ,rx_queue[rear]);
+      |      ^~~~~~
+../Core/Src/uart.c:69:6: note: include '<stdio.h>' or provide a declaration of 'printf'
+../Core/Src/uart.c:81:6: warning: incompatible implicit declaration of built-in function 'printf'
+   81 |      printf("Message Overflow !!! \n");
+      |      ^~~~~~
+../Core/Src/uart.c:81:6: note: include '<stdio.h>' or provide a declaration of 'printf'
+../Core/Src/uart.c:109:7: warning: incompatible implicit declaration of built-in function 'printf'
+  109 |       printf("BT Message Overflow !!! \n");
+      |       ^~~~~~
+../Core/Src/uart.c:109:7: note: include '<stdio.h>' or provide a declaration of 'printf'
+../Core/Src/uart.c: In function 'pc_command_processing':
+../Core/Src/uart.c:127:7: warning: implicit declaration of function 'strncmp' [-Wimplicit-function-declaration]
+  127 |   if(!strncmp(rx_queue[front],"led_all_on",strlen("led_all_on")))
+      |       ^~~~~~~
+../Core/Src/uart.c:127:44: warning: implicit declaration of function 'strlen' [-Wimplicit-function-declaration]
+  127 |   if(!strncmp(rx_queue[front],"led_all_on",strlen("led_all_on")))
+      |                                            ^~~~~~
+../Core/Src/uart.c:127:44: warning: incompatible implicit declaration of built-in function 'strlen'
+../Core/Src/uart.c:2:1: note: include '<string.h>' or provide a declaration of 'strlen'
+    1 | #include "uart.h"
+  +++ |+#include <string.h>
+    2 | 
+../Core/Src/uart.c:127:23: warning: passing argument 1 of 'strncmp' discards 'volatile' qualifier from pointer target type [-Wdiscarded-qualifiers]
+  127 |   if(!strncmp(rx_queue[front],"led_all_on",strlen("led_all_on")))
+      |               ~~~~~~~~^~~~~~~
+../Core/Src/uart.c:127:23: note: expected 'const char *' but argument is of type 'volatile unsigned char *'
+../Core/Src/uart.c:130:4: warning: incompatible implicit declaration of built-in function 'printf'
+  130 |    printf("%s excute : %d\n",rx_queue[front],front);
+      |    ^~~~~~
+../Core/Src/uart.c:130:4: note: include '<stdio.h>' or provide a declaration of 'printf'
+../Core/Src/uart.c:136:45: warning: incompatible implicit declaration of built-in function 'strlen'
+  136 |   if(!strncmp(rx_queue[front],"led_all_off",strlen("led_all_off")))
+      |                                             ^~~~~~
+../Core/Src/uart.c:136:45: note: include '<string.h>' or provide a declaration of 'strlen'
+../Core/Src/uart.c:136:23: warning: passing argument 1 of 'strncmp' discards 'volatile' qualifier from pointer target type [-Wdiscarded-qualifiers]
+  136 |   if(!strncmp(rx_queue[front],"led_all_off",strlen("led_all_off")))
+      |               ~~~~~~~~^~~~~~~
+../Core/Src/uart.c:136:23: note: expected 'const char *' but argument is of type 'volatile unsigned char *'
+../Core/Src/uart.c:139:4: warning: incompatible implicit declaration of built-in function 'printf'
+  139 |    printf("%s excute : %d\n",rx_queue[front],front);
+      |    ^~~~~~
+../Core/Src/uart.c:139:4: note: include '<stdio.h>' or provide a declaration of 'printf'
+../Core/Src/uart.c:145:45: warning: incompatible implicit declaration of built-in function 'strlen'
+  145 |   if(!strncmp(rx_queue[front],"led_on_down",strlen("led_on_down")))
+      |                                             ^~~~~~
+../Core/Src/uart.c:145:45: note: include '<string.h>' or provide a declaration of 'strlen'
+../Core/Src/uart.c:145:23: warning: passing argument 1 of 'strncmp' discards 'volatile' qualifier from pointer target type [-Wdiscarded-qualifiers]
+  145 |   if(!strncmp(rx_queue[front],"led_on_down",strlen("led_on_down")))
+      |               ~~~~~~~~^~~~~~~
+../Core/Src/uart.c:145:23: note: expected 'const char *' but argument is of type 'volatile unsigned char *'
+../Core/Src/uart.c:148:4: warning: incompatible implicit declaration of built-in function 'printf'
+  148 |    printf("%s excute : %d\n",rx_queue[front],front);
+      |    ^~~~~~
+../Core/Src/uart.c:148:4: note: include '<stdio.h>' or provide a declaration of 'printf'
+../Core/Src/uart.c:154:43: warning: incompatible implicit declaration of built-in function 'strlen'
+  154 |   if(!strncmp(rx_queue[front],"led_on_up",strlen("led_on_up")))
+      |                                           ^~~~~~
+../Core/Src/uart.c:154:43: note: include '<string.h>' or provide a declaration of 'strlen'
+../Core/Src/uart.c:154:23: warning: passing argument 1 of 'strncmp' discards 'volatile' qualifier from pointer target type [-Wdiscarded-qualifiers]
+  154 |   if(!strncmp(rx_queue[front],"led_on_up",strlen("led_on_up")))
+      |               ~~~~~~~~^~~~~~~
+../Core/Src/uart.c:154:23: note: expected 'const char *' but argument is of type 'volatile unsigned char *'
+../Core/Src/uart.c:157:4: warning: incompatible implicit declaration of built-in function 'printf'
+  157 |    printf("%s excute : %d\n",rx_queue[front],front);
+      |    ^~~~~~
+../Core/Src/uart.c:157:4: note: include '<stdio.h>' or provide a declaration of 'printf'
+../Core/Src/uart.c:163:43: warning: incompatible implicit declaration of built-in function 'strlen'
+  163 |   if(!strncmp(rx_queue[front],"keepon_up",strlen("keepon_up")))
+      |                                           ^~~~~~
+../Core/Src/uart.c:163:43: note: include '<string.h>' or provide a declaration of 'strlen'
+../Core/Src/uart.c:163:23: warning: passing argument 1 of 'strncmp' discards 'volatile' qualifier from pointer target type [-Wdiscarded-qualifiers]
+  163 |   if(!strncmp(rx_queue[front],"keepon_up",strlen("keepon_up")))
+      |               ~~~~~~~~^~~~~~~
+../Core/Src/uart.c:163:23: note: expected 'const char *' but argument is of type 'volatile unsigned char *'
+../Core/Src/uart.c:166:4: warning: incompatible implicit declaration of built-in function 'printf'
+  166 |    printf("%s excute : %d\n",rx_queue[front],front);
+      |    ^~~~~~
+../Core/Src/uart.c:166:4: note: include '<stdio.h>' or provide a declaration of 'printf'
+../Core/Src/uart.c:172:45: warning: incompatible implicit declaration of built-in function 'strlen'
+  172 |   if(!strncmp(rx_queue[front],"keepon_down",strlen("keepon_down")))
+      |                                             ^~~~~~
+../Core/Src/uart.c:172:45: note: include '<string.h>' or provide a declaration of 'strlen'
+../Core/Src/uart.c:172:23: warning: passing argument 1 of 'strncmp' discards 'volatile' qualifier from pointer target type [-Wdiscarded-qualifiers]
+  172 |   if(!strncmp(rx_queue[front],"keepon_down",strlen("keepon_down")))
+      |               ~~~~~~~~^~~~~~~
+../Core/Src/uart.c:172:23: note: expected 'const char *' but argument is of type 'volatile unsigned char *'
+../Core/Src/uart.c:175:4: warning: incompatible implicit declaration of built-in function 'printf'
+  175 |    printf("%s excute : %d\n",rx_queue[front],front);
+      |    ^~~~~~
+../Core/Src/uart.c:175:4: note: include '<stdio.h>' or provide a declaration of 'printf'
+../Core/Src/uart.c:181:43: warning: incompatible implicit declaration of built-in function 'strlen'
+  181 |   if(!strncmp(rx_queue[front],"flower_on",strlen("flower_on")))
+      |                                           ^~~~~~
+../Core/Src/uart.c:181:43: note: include '<string.h>' or provide a declaration of 'strlen'
+../Core/Src/uart.c:181:23: warning: passing argument 1 of 'strncmp' discards 'volatile' qualifier from pointer target type [-Wdiscarded-qualifiers]
+  181 |   if(!strncmp(rx_queue[front],"flower_on",strlen("flower_on")))
+      |               ~~~~~~~~^~~~~~~
+../Core/Src/uart.c:181:23: note: expected 'const char *' but argument is of type 'volatile unsigned char *'
+../Core/Src/uart.c:184:4: warning: incompatible implicit declaration of built-in function 'printf'
+  184 |    printf("%s excute : %d\n",rx_queue[front],front);
+      |    ^~~~~~
+../Core/Src/uart.c:184:4: note: include '<stdio.h>' or provide a declaration of 'printf'
+../Core/Src/uart.c:190:44: warning: incompatible implicit declaration of built-in function 'strlen'
+  190 |   if(!strncmp(rx_queue[front],"flower_off",strlen("flower_off")))
+      |                                            ^~~~~~
+../Core/Src/uart.c:190:44: note: include '<string.h>' or provide a declaration of 'strlen'
+../Core/Src/uart.c:190:23: warning: passing argument 1 of 'strncmp' discards 'volatile' qualifier from pointer target type [-Wdiscarded-qualifiers]
+  190 |   if(!strncmp(rx_queue[front],"flower_off",strlen("flower_off")))
+      |               ~~~~~~~~^~~~~~~
+../Core/Src/uart.c:190:23: note: expected 'const char *' but argument is of type 'volatile unsigned char *'
+../Core/Src/uart.c:193:4: warning: incompatible implicit declaration of built-in function 'printf'
+  193 |    printf("%s excute : %d\n",rx_queue[front],front);
+      |    ^~~~~~
+../Core/Src/uart.c:193:4: note: include '<stdio.h>' or provide a declaration of 'printf'
+../Core/Src/uart.c: In function 'bt_command_processing':
+../Core/Src/uart.c:208:3: warning: incompatible implicit declaration of built-in function 'printf'
+  208 |   printf("%s\n",bt_rx_buff);
+      |   ^~~~~~
+../Core/Src/uart.c:208:3: note: include '<stdio.h>' or provide a declaration of 'printf'
+../Core/Src/uart.c:209:39: warning: incompatible implicit declaration of built-in function 'strlen'
+  209 |   if(!strncmp(bt_rx_buff,"led_all_on",strlen("led_all_on")))
+      |                                       ^~~~~~
+../Core/Src/uart.c:209:39: note: include '<string.h>' or provide a declaration of 'strlen'
+../Core/Src/uart.c:209:15: warning: passing argument 1 of 'strncmp' discards 'volatile' qualifier from pointer target type [-Wdiscarded-qualifiers]
+  209 |   if(!strncmp(bt_rx_buff,"led_all_on",strlen("led_all_on")))
+      |               ^~~~~~~~~~
+../Core/Src/uart.c:209:15: note: expected 'const char *' but argument is of type 'volatile unsigned char *'
+../Core/Src/uart.c:214:40: warning: incompatible implicit declaration of built-in function 'strlen'
+  214 |   if(!strncmp(bt_rx_buff,"led_all_off",strlen("led_all_off")))
+      |                                        ^~~~~~
+../Core/Src/uart.c:214:40: note: include '<string.h>' or provide a declaration of 'strlen'
+../Core/Src/uart.c:214:15: warning: passing argument 1 of 'strncmp' discards 'volatile' qualifier from pointer target type [-Wdiscarded-qualifiers]
+  214 |   if(!strncmp(bt_rx_buff,"led_all_off",strlen("led_all_off")))
+      |               ^~~~~~~~~~
+../Core/Src/uart.c:214:15: note: expected 'const char *' but argument is of type 'volatile unsigned char *'
+../Core/Src/uart.c:219:40: warning: incompatible implicit declaration of built-in function 'strlen'
+  219 |   if(!strncmp(bt_rx_buff,"led_on_down",strlen("led_on_down")))
+      |                                        ^~~~~~
+../Core/Src/uart.c:219:40: note: include '<string.h>' or provide a declaration of 'strlen'
+../Core/Src/uart.c:219:15: warning: passing argument 1 of 'strncmp' discards 'volatile' qualifier from pointer target type [-Wdiscarded-qualifiers]
+  219 |   if(!strncmp(bt_rx_buff,"led_on_down",strlen("led_on_down")))
+      |               ^~~~~~~~~~
+../Core/Src/uart.c:219:15: note: expected 'const char *' but argument is of type 'volatile unsigned char *'
+../Core/Src/uart.c:224:38: warning: incompatible implicit declaration of built-in function 'strlen'
+  224 |   if(!strncmp(bt_rx_buff,"led_on_up",strlen("led_on_up")))
+      |                                      ^~~~~~
+../Core/Src/uart.c:224:38: note: include '<string.h>' or provide a declaration of 'strlen'
+../Core/Src/uart.c:224:15: warning: passing argument 1 of 'strncmp' discards 'volatile' qualifier from pointer target type [-Wdiscarded-qualifiers]
+  224 |   if(!strncmp(bt_rx_buff,"led_on_up",strlen("led_on_up")))
+      |               ^~~~~~~~~~
+../Core/Src/uart.c:224:15: note: expected 'const char *' but argument is of type 'volatile unsigned char *'
+../Core/Src/uart.c:229:38: warning: incompatible implicit declaration of built-in function 'strlen'
+  229 |   if(!strncmp(bt_rx_buff,"keepon_up",strlen("keepon_up")))
+      |                                      ^~~~~~
+../Core/Src/uart.c:229:38: note: include '<string.h>' or provide a declaration of 'strlen'
+../Core/Src/uart.c:229:15: warning: passing argument 1 of 'strncmp' discards 'volatile' qualifier from pointer target type [-Wdiscarded-qualifiers]
+  229 |   if(!strncmp(bt_rx_buff,"keepon_up",strlen("keepon_up")))
+      |               ^~~~~~~~~~
+../Core/Src/uart.c:229:15: note: expected 'const char *' but argument is of type 'volatile unsigned char *'
+../Core/Src/uart.c:234:40: warning: incompatible implicit declaration of built-in function 'strlen'
+  234 |   if(!strncmp(bt_rx_buff,"keepon_down",strlen("keepon_down")))
+      |                                        ^~~~~~
+../Core/Src/uart.c:234:40: note: include '<string.h>' or provide a declaration of 'strlen'
+../Core/Src/uart.c:234:15: warning: passing argument 1 of 'strncmp' discards 'volatile' qualifier from pointer target type [-Wdiscarded-qualifiers]
+  234 |   if(!strncmp(bt_rx_buff,"keepon_down",strlen("keepon_down")))
+      |               ^~~~~~~~~~
+../Core/Src/uart.c:234:15: note: expected 'const char *' but argument is of type 'volatile unsigned char *'
+../Core/Src/uart.c:239:38: warning: incompatible implicit declaration of built-in function 'strlen'
+  239 |   if(!strncmp(bt_rx_buff,"flower_on",strlen("flower_on")))
+      |                                      ^~~~~~
+../Core/Src/uart.c:239:38: note: include '<string.h>' or provide a declaration of 'strlen'
+../Core/Src/uart.c:239:15: warning: passing argument 1 of 'strncmp' discards 'volatile' qualifier from pointer target type [-Wdiscarded-qualifiers]
+  239 |   if(!strncmp(bt_rx_buff,"flower_on",strlen("flower_on")))
+      |               ^~~~~~~~~~
+../Core/Src/uart.c:239:15: note: expected 'const char *' but argument is of type 'volatile unsigned char *'
+../Core/Src/uart.c:244:39: warning: incompatible implicit declaration of built-in function 'strlen'
+  244 |   if(!strncmp(bt_rx_buff,"flower_off",strlen("flower_off")))
+      |                                       ^~~~~~
+../Core/Src/uart.c:244:39: note: include '<string.h>' or provide a declaration of 'strlen'
+../Core/Src/uart.c:244:15: warning: passing argument 1 of 'strncmp' discards 'volatile' qualifier from pointer target type [-Wdiscarded-qualifiers]
+  244 |   if(!strncmp(bt_rx_buff,"flower_off",strlen("flower_off")))
+      |               ^~~~~~~~~~
+../Core/Src/uart.c:244:15: note: expected 'const char *' but argument is of type 'volatile unsigned char *'
+arm-none-eabi-gcc -o "04.TIMER_UART.elf" @"objects.list"   -mcpu=cortex-m4 -T"D:\gyuwon\source\STM32F429ZI\04.TIMER_UART\STM32F429ZITX_FLASH.ld" --specs=nosys.specs -Wl,-Map="04.TIMER_UART.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: 04.TIMER_UART.elf
+ 
+arm-none-eabi-size   04.TIMER_UART.elf 
+arm-none-eabi-objdump -h -S  04.TIMER_UART.elf  > "04.TIMER_UART.list"
+   text	   data	    bss	    dec	    hex	filename
+  23212	    120	   4448	  27780	   6c84	04.TIMER_UART.elf
+Finished building: default.size.stdout
+ 
+Finished building: 04.TIMER_UART.list
+ 
+
+20:37:48 Build Finished. 0 errors, 48 warnings. (took 470ms)
+

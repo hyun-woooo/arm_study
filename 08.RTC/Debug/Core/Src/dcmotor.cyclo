@@ -1,0 +1,8 @@
+dcmotor.c:35:6:dcmotor_pwm_control	1
+dcmotor.c:49:6:swit_led	6
+dcmotor.c:72:6:print_lcd	8
+dcmotor.c:116:6:dcmoter_init	1
+dcmotor.c:153:6:press_button0	7
+dcmotor.c:209:6:press_button1	4
+dcmotor.c:234:6:press_button2	3
+dcmotor.c:258:6:press_button3	6

@@ -1,0 +1,56 @@
+09:09:59 **** Incremental Build of configuration Debug for project Project ****
+make -j24 all 
+arm-none-eabi-gcc "../Core/Src/washing machine.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F429xx -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/washing machine.d" -MT"Core/Src/washing machine.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/washing machine.o"
+../Core/Src/washing machine.c: In function 'machine_start':
+../Core/Src/washing machine.c:35:3: warning: implicit declaration of function 'sprintf' [-Wimplicit-function-declaration]
+   35 |   sprintf(lcd_buff,"s:%4ds r:%4ds",set_time,remain_time);
+      |   ^~~~~~~
+../Core/Src/washing machine.c:35:3: warning: incompatible implicit declaration of built-in function 'sprintf'
+../Core/Src/washing machine.c:3:1: note: include '<stdio.h>' or provide a declaration of 'sprintf'
+    2 | #include "button.h"
+  +++ |+#include <stdio.h>
+    3 | 
+../Core/Src/washing machine.c:36:14: warning: pointer targets in passing argument 1 of 'lcd_string' differ in signedness [-Wpointer-sign]
+   36 |   lcd_string(lcd_buff);
+      |              ^~~~~~~~
+      |              |
+      |              char *
+../Core/Src/washing machine.c:4:33: note: expected 'uint8_t *' {aka 'unsigned char *'} but argument is of type 'char *'
+    4 | extern void lcd_string(uint8_t *str);
+      |                        ~~~~~~~~~^~~
+../Core/Src/washing machine.c: In function 'test':
+../Core/Src/washing machine.c:97:3: warning: implicit declaration of function 'printf' [-Wimplicit-function-declaration]
+   97 |   printf("1 on\n");
+      |   ^~~~~~
+../Core/Src/washing machine.c:97:3: warning: incompatible implicit declaration of built-in function 'printf'
+../Core/Src/washing machine.c:97:3: note: include '<stdio.h>' or provide a declaration of 'printf'
+../Core/Src/washing machine.c:102:3: warning: incompatible implicit declaration of built-in function 'printf'
+  102 |   printf("2 on\n");
+      |   ^~~~~~
+../Core/Src/washing machine.c:102:3: note: include '<stdio.h>' or provide a declaration of 'printf'
+../Core/Src/washing machine.c:107:3: warning: incompatible implicit declaration of built-in function 'printf'
+  107 |   printf("3 on\n");
+      |   ^~~~~~
+../Core/Src/washing machine.c:107:3: note: include '<stdio.h>' or provide a declaration of 'printf'
+../Core/Src/washing machine.c:112:3: warning: incompatible implicit declaration of built-in function 'printf'
+  112 |   printf("4 on\n");
+      |   ^~~~~~
+../Core/Src/washing machine.c:112:3: note: include '<stdio.h>' or provide a declaration of 'printf'
+../Core/Src/washing machine.c:117:3: warning: incompatible implicit declaration of built-in function 'printf'
+  117 |   printf("5 on\n");
+      |   ^~~~~~
+../Core/Src/washing machine.c:117:3: note: include '<stdio.h>' or provide a declaration of 'printf'
+arm-none-eabi-gcc -o "Project.elf" @"objects.list"   -mcpu=cortex-m4 -T"D:\gyuwon\source\STM32F429ZI\Project\STM32F429ZITX_FLASH.ld" --specs=nosys.specs -Wl,-Map="Project.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: Project.elf
+ 
+arm-none-eabi-size   Project.elf 
+arm-none-eabi-objdump -h -S  Project.elf  > "Project.list"
+   text	   data	    bss	    dec	    hex	filename
+  38600	    128	   4088	  42816	   a740	Project.elf
+Finished building: default.size.stdout
+ 
+Finished building: Project.list
+ 
+
+09:10:00 Build Finished. 0 errors, 9 warnings. (took 533ms)
+

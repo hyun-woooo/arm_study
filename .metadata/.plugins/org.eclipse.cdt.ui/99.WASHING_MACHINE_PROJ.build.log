@@ -1,0 +1,414 @@
+20:31:16 **** Incremental Build of configuration Debug for project 99.WASHING_MACHINE_PROJ ****
+make -j24 all 
+arm-none-eabi-gcc "../Core/Src/washing machine.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F429xx -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/washing machine.d" -MT"Core/Src/washing machine.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/washing machine.o"
+../Core/Src/washing machine.c:27:27: warning: initialization of 'long unsigned int' from 'void *' makes integer from pointer without a cast [-Wint-conversion]
+   27 |   FND_a,FND_b|FND_c,FND_d,NULL
+      |                           ^~~~
+../Core/Src/washing machine.c:27:27: note: (near initialization for 'FND_1forward[3]')
+../Core/Src/washing machine.c:31:9: warning: initialization of 'long unsigned int' from 'void *' makes integer from pointer without a cast [-Wint-conversion]
+   31 |   FND_a,NULL,FND_d,FND_e|FND_f
+      |         ^~~~
+../Core/Src/washing machine.c:31:9: note: (near initialization for 'FND_2forward[1]')
+../Core/Src/washing machine.c: In function 'ultrasonic_processing':
+../Core/Src/washing machine.c:167:7: warning: unused variable 'ultra_lcd_buff' [-Wunused-variable]
+  167 |  char ultra_lcd_buff[20];
+      |       ^~~~~~~~~~~~~~
+../Core/Src/washing machine.c: In function 'print_menu':
+../Core/Src/washing machine.c:236:13: warning: pointer targets in passing argument 1 of 'lcd_string' differ in signedness [-Wpointer-sign]
+  236 |  lcd_string("b1:Start b2:High");
+      |             ^~~~~~~~~~~~~~~~~~
+      |             |
+      |             char *
+In file included from ../Core/Src/washing machine.c:3:
+../Core/Inc/i2c_lcd.h:23:26: note: expected 'uint8_t *' {aka 'unsigned char *'} but argument is of type 'char *'
+   23 | void lcd_string(uint8_t *str);
+      |                 ~~~~~~~~~^~~
+../Core/Src/washing machine.c:238:13: warning: pointer targets in passing argument 1 of 'lcd_string' differ in signedness [-Wpointer-sign]
+  238 |  lcd_string("b3:Time  b4:Mod");
+      |             ^~~~~~~~~~~~~~~~~
+      |             |
+      |             char *
+In file included from ../Core/Src/washing machine.c:3:
+../Core/Inc/i2c_lcd.h:23:26: note: expected 'uint8_t *' {aka 'unsigned char *'} but argument is of type 'char *'
+   23 | void lcd_string(uint8_t *str);
+      |                 ~~~~~~~~~^~~
+../Core/Src/washing machine.c: In function 'back_check':
+../Core/Src/washing machine.c:248:15: warning: pointer targets in passing argument 1 of 'lcd_string' differ in signedness [-Wpointer-sign]
+  248 |    lcd_string("apply complement");
+      |               ^~~~~~~~~~~~~~~~~~
+      |               |
+      |               char *
+In file included from ../Core/Src/washing machine.c:3:
+../Core/Inc/i2c_lcd.h:23:26: note: expected 'uint8_t *' {aka 'unsigned char *'} but argument is of type 'char *'
+   23 | void lcd_string(uint8_t *str);
+      |                 ~~~~~~~~~^~~
+../Core/Src/washing machine.c:261:14: warning: pointer targets in passing argument 1 of 'lcd_string' differ in signedness [-Wpointer-sign]
+  261 |   lcd_string("| x| x| x| back|");
+      |              ^~~~~~~~~~~~~~~~~~
+      |              |
+      |              char *
+In file included from ../Core/Src/washing machine.c:3:
+../Core/Inc/i2c_lcd.h:23:26: note: expected 'uint8_t *' {aka 'unsigned char *'} but argument is of type 'char *'
+   23 | void lcd_string(uint8_t *str);
+      |                 ~~~~~~~~~^~~
+../Core/Src/washing machine.c: In function 'open_door':
+../Core/Src/washing machine.c:274:13: warning: pointer targets in passing argument 1 of 'lcd_string' differ in signedness [-Wpointer-sign]
+  274 |  lcd_string("  open the door");
+      |             ^~~~~~~~~~~~~~~~~
+      |             |
+      |             char *
+In file included from ../Core/Src/washing machine.c:3:
+../Core/Inc/i2c_lcd.h:23:26: note: expected 'uint8_t *' {aka 'unsigned char *'} but argument is of type 'char *'
+   23 | void lcd_string(uint8_t *str);
+      |                 ~~~~~~~~~^~~
+../Core/Src/washing machine.c:276:13: warning: pointer targets in passing argument 1 of 'lcd_string' differ in signedness [-Wpointer-sign]
+  276 |  lcd_string("                ");
+      |             ^~~~~~~~~~~~~~~~~~
+      |             |
+      |             char *
+In file included from ../Core/Src/washing machine.c:3:
+../Core/Inc/i2c_lcd.h:23:26: note: expected 'uint8_t *' {aka 'unsigned char *'} but argument is of type 'char *'
+   23 | void lcd_string(uint8_t *str);
+      |                 ~~~~~~~~~^~~
+../Core/Src/washing machine.c: In function 'stop_time':
+../Core/Src/washing machine.c:344:13: warning: pointer targets in passing argument 1 of 'lcd_string' differ in signedness [-Wpointer-sign]
+  344 |  lcd_string("  stop");
+      |             ^~~~~~~~
+      |             |
+      |             char *
+In file included from ../Core/Src/washing machine.c:3:
+../Core/Inc/i2c_lcd.h:23:26: note: expected 'uint8_t *' {aka 'unsigned char *'} but argument is of type 'char *'
+   23 | void lcd_string(uint8_t *str);
+      |                 ~~~~~~~~~^~~
+../Core/Src/washing machine.c:346:2: warning: implicit declaration of function 'sprintf' [-Wimplicit-function-declaration]
+  346 |  sprintf(lcd_buff,"remain : %04ds",remain_time);
+      |  ^~~~~~~
+../Core/Src/washing machine.c:346:2: warning: incompatible implicit declaration of built-in function 'sprintf'
+../Core/Src/washing machine.c:7:1: note: include '<stdio.h>' or provide a declaration of 'sprintf'
+    6 | #include "ultrasonic.h"
+  +++ |+#include <stdio.h>
+    7 | 
+../Core/Src/washing machine.c:347:13: warning: pointer targets in passing argument 1 of 'lcd_string' differ in signedness [-Wpointer-sign]
+  347 |  lcd_string(lcd_buff);
+      |             ^~~~~~~~
+      |             |
+      |             char *
+In file included from ../Core/Src/washing machine.c:3:
+../Core/Inc/i2c_lcd.h:23:26: note: expected 'uint8_t *' {aka 'unsigned char *'} but argument is of type 'char *'
+   23 | void lcd_string(uint8_t *str);
+      |                 ~~~~~~~~~^~~
+../Core/Src/washing machine.c: In function 'go_time':
+../Core/Src/washing machine.c:373:3: warning: incompatible implicit declaration of built-in function 'sprintf'
+  373 |   sprintf(lcd_buff,"remain time:%03ds", remain_time);
+      |   ^~~~~~~
+../Core/Src/washing machine.c:373:3: note: include '<stdio.h>' or provide a declaration of 'sprintf'
+../Core/Src/washing machine.c:374:14: warning: pointer targets in passing argument 1 of 'lcd_string' differ in signedness [-Wpointer-sign]
+  374 |   lcd_string(lcd_buff);
+      |              ^~~~~~~~
+      |              |
+      |              char *
+In file included from ../Core/Src/washing machine.c:3:
+../Core/Inc/i2c_lcd.h:23:26: note: expected 'uint8_t *' {aka 'unsigned char *'} but argument is of type 'char *'
+   23 | void lcd_string(uint8_t *str);
+      |                 ~~~~~~~~~^~~
+../Core/Src/washing machine.c:396:15: warning: pointer targets in passing argument 1 of 'lcd_string' differ in signedness [-Wpointer-sign]
+  396 |    lcd_string(lcd_buff);
+      |               ^~~~~~~~
+      |               |
+      |               char *
+In file included from ../Core/Src/washing machine.c:3:
+../Core/Inc/i2c_lcd.h:23:26: note: expected 'uint8_t *' {aka 'unsigned char *'} but argument is of type 'char *'
+   23 | void lcd_string(uint8_t *str);
+      |                 ~~~~~~~~~^~~
+../Core/Src/washing machine.c:407:15: warning: pointer targets in passing argument 1 of 'lcd_string' differ in signedness [-Wpointer-sign]
+  407 |    lcd_string(lcd_buff);
+      |               ^~~~~~~~
+      |               |
+      |               char *
+In file included from ../Core/Src/washing machine.c:3:
+../Core/Inc/i2c_lcd.h:23:26: note: expected 'uint8_t *' {aka 'unsigned char *'} but argument is of type 'char *'
+   23 | void lcd_string(uint8_t *str);
+      |                 ~~~~~~~~~^~~
+../Core/Src/washing machine.c:420:15: warning: pointer targets in passing argument 1 of 'lcd_string' differ in signedness [-Wpointer-sign]
+  420 |    lcd_string(lcd_buff);
+      |               ^~~~~~~~
+      |               |
+      |               char *
+In file included from ../Core/Src/washing machine.c:3:
+../Core/Inc/i2c_lcd.h:23:26: note: expected 'uint8_t *' {aka 'unsigned char *'} but argument is of type 'char *'
+   23 | void lcd_string(uint8_t *str);
+      |                 ~~~~~~~~~^~~
+../Core/Src/washing machine.c: In function 'end_moter':
+../Core/Src/washing machine.c:457:13: warning: pointer targets in passing argument 1 of 'lcd_string' differ in signedness [-Wpointer-sign]
+  457 |  lcd_string("washing end");
+      |             ^~~~~~~~~~~~~
+      |             |
+      |             char *
+In file included from ../Core/Src/washing machine.c:3:
+../Core/Inc/i2c_lcd.h:23:26: note: expected 'uint8_t *' {aka 'unsigned char *'} but argument is of type 'char *'
+   23 | void lcd_string(uint8_t *str);
+      |                 ~~~~~~~~~^~~
+../Core/Src/washing machine.c:459:13: warning: pointer targets in passing argument 1 of 'lcd_string' differ in signedness [-Wpointer-sign]
+  459 |  lcd_string("|x |x |x |home");
+      |             ^~~~~~~~~~~~~~~~
+      |             |
+      |             char *
+In file included from ../Core/Src/washing machine.c:3:
+../Core/Inc/i2c_lcd.h:23:26: note: expected 'uint8_t *' {aka 'unsigned char *'} but argument is of type 'char *'
+   23 | void lcd_string(uint8_t *str);
+      |                 ~~~~~~~~~^~~
+../Core/Src/washing machine.c: In function 'water_high_func':
+../Core/Src/washing machine.c:480:1: warning: implicit declaration of function 'printf' [-Wimplicit-function-declaration]
+  480 | printf("water_func excute\n");
+      | ^~~~~~
+../Core/Src/washing machine.c:480:1: warning: incompatible implicit declaration of built-in function 'printf'
+../Core/Src/washing machine.c:480:1: note: include '<stdio.h>' or provide a declaration of 'printf'
+../Core/Src/washing machine.c: In function 'water_high':
+../Core/Src/washing machine.c:514:13: warning: pointer targets in passing argument 1 of 'lcd_string' differ in signedness [-Wpointer-sign]
+  514 |  lcd_string("  mode : high");
+      |             ^~~~~~~~~~~~~~~
+      |             |
+      |             char *
+In file included from ../Core/Src/washing machine.c:3:
+../Core/Inc/i2c_lcd.h:23:26: note: expected 'uint8_t *' {aka 'unsigned char *'} but argument is of type 'char *'
+   23 | void lcd_string(uint8_t *str);
+      |                 ~~~~~~~~~^~~
+../Core/Src/washing machine.c:516:13: warning: pointer targets in passing argument 1 of 'lcd_string' differ in signedness [-Wpointer-sign]
+  516 |  lcd_string("|1|2|3|apply|");
+      |             ^~~~~~~~~~~~~~~
+      |             |
+      |             char *
+In file included from ../Core/Src/washing machine.c:3:
+../Core/Inc/i2c_lcd.h:23:26: note: expected 'uint8_t *' {aka 'unsigned char *'} but argument is of type 'char *'
+   23 | void lcd_string(uint8_t *str);
+      |                 ~~~~~~~~~^~~
+../Core/Src/washing machine.c: In function 'water_middle':
+../Core/Src/washing machine.c:529:13: warning: pointer targets in passing argument 1 of 'lcd_string' differ in signedness [-Wpointer-sign]
+  529 |  lcd_string("  mode : middle");
+      |             ^~~~~~~~~~~~~~~~~
+      |             |
+      |             char *
+In file included from ../Core/Src/washing machine.c:3:
+../Core/Inc/i2c_lcd.h:23:26: note: expected 'uint8_t *' {aka 'unsigned char *'} but argument is of type 'char *'
+   23 | void lcd_string(uint8_t *str);
+      |                 ~~~~~~~~~^~~
+../Core/Src/washing machine.c:531:13: warning: pointer targets in passing argument 1 of 'lcd_string' differ in signedness [-Wpointer-sign]
+  531 |  lcd_string("|1|2|3|apply|");
+      |             ^~~~~~~~~~~~~~~
+      |             |
+      |             char *
+In file included from ../Core/Src/washing machine.c:3:
+../Core/Inc/i2c_lcd.h:23:26: note: expected 'uint8_t *' {aka 'unsigned char *'} but argument is of type 'char *'
+   23 | void lcd_string(uint8_t *str);
+      |                 ~~~~~~~~~^~~
+../Core/Src/washing machine.c: In function 'water_low':
+../Core/Src/washing machine.c:545:13: warning: pointer targets in passing argument 1 of 'lcd_string' differ in signedness [-Wpointer-sign]
+  545 |  lcd_string("  mode : low");
+      |             ^~~~~~~~~~~~~~
+      |             |
+      |             char *
+In file included from ../Core/Src/washing machine.c:3:
+../Core/Inc/i2c_lcd.h:23:26: note: expected 'uint8_t *' {aka 'unsigned char *'} but argument is of type 'char *'
+   23 | void lcd_string(uint8_t *str);
+      |                 ~~~~~~~~~^~~
+../Core/Src/washing machine.c:547:13: warning: pointer targets in passing argument 1 of 'lcd_string' differ in signedness [-Wpointer-sign]
+  547 |  lcd_string("|1|2|3|apply|");
+      |             ^~~~~~~~~~~~~~~
+      |             |
+      |             char *
+In file included from ../Core/Src/washing machine.c:3:
+../Core/Inc/i2c_lcd.h:23:26: note: expected 'uint8_t *' {aka 'unsigned char *'} but argument is of type 'char *'
+   23 | void lcd_string(uint8_t *str);
+      |                 ~~~~~~~~~^~~
+../Core/Src/washing machine.c: In function 'view_water':
+../Core/Src/washing machine.c:558:15: warning: pointer targets in passing argument 1 of 'lcd_string' differ in signedness [-Wpointer-sign]
+  558 |    lcd_string("  mode : middle");
+      |               ^~~~~~~~~~~~~~~~~
+      |               |
+      |               char *
+In file included from ../Core/Src/washing machine.c:3:
+../Core/Inc/i2c_lcd.h:23:26: note: expected 'uint8_t *' {aka 'unsigned char *'} but argument is of type 'char *'
+   23 | void lcd_string(uint8_t *str);
+      |                 ~~~~~~~~~^~~
+../Core/Src/washing machine.c:560:15: warning: pointer targets in passing argument 1 of 'lcd_string' differ in signedness [-Wpointer-sign]
+  560 |    lcd_string("|1|2|3|apply|");
+      |               ^~~~~~~~~~~~~~~
+      |               |
+      |               char *
+In file included from ../Core/Src/washing machine.c:3:
+../Core/Inc/i2c_lcd.h:23:26: note: expected 'uint8_t *' {aka 'unsigned char *'} but argument is of type 'char *'
+   23 | void lcd_string(uint8_t *str);
+      |                 ~~~~~~~~~^~~
+../Core/Src/washing machine.c: In function 'time_view':
+../Core/Src/washing machine.c:605:3: warning: incompatible implicit declaration of built-in function 'sprintf'
+  605 |   sprintf(lcd_buff,"Laundry time: %d",print_Laundry);
+      |   ^~~~~~~
+../Core/Src/washing machine.c:605:3: note: include '<stdio.h>' or provide a declaration of 'sprintf'
+../Core/Src/washing machine.c:606:14: warning: pointer targets in passing argument 1 of 'lcd_string' differ in signedness [-Wpointer-sign]
+  606 |   lcd_string(lcd_buff);
+      |              ^~~~~~~~
+      |              |
+      |              char *
+In file included from ../Core/Src/washing machine.c:3:
+../Core/Inc/i2c_lcd.h:23:26: note: expected 'uint8_t *' {aka 'unsigned char *'} but argument is of type 'char *'
+   23 | void lcd_string(uint8_t *str);
+      |                 ~~~~~~~~~^~~
+../Core/Src/washing machine.c:608:14: warning: pointer targets in passing argument 1 of 'lcd_string' differ in signedness [-Wpointer-sign]
+  608 |   lcd_string("Rinse plus minus ");
+      |              ^~~~~~~~~~~~~~~~~~~
+      |              |
+      |              char *
+In file included from ../Core/Src/washing machine.c:3:
+../Core/Inc/i2c_lcd.h:23:26: note: expected 'uint8_t *' {aka 'unsigned char *'} but argument is of type 'char *'
+   23 | void lcd_string(uint8_t *str);
+      |                 ~~~~~~~~~^~~
+../Core/Src/washing machine.c:614:3: warning: incompatible implicit declaration of built-in function 'sprintf'
+  614 |   sprintf(lcd_buff,"Rinse time: %d  ",print_Rinse);
+      |   ^~~~~~~
+../Core/Src/washing machine.c:614:3: note: include '<stdio.h>' or provide a declaration of 'sprintf'
+../Core/Src/washing machine.c:615:14: warning: pointer targets in passing argument 1 of 'lcd_string' differ in signedness [-Wpointer-sign]
+  615 |   lcd_string(lcd_buff);
+      |              ^~~~~~~~
+      |              |
+      |              char *
+In file included from ../Core/Src/washing machine.c:3:
+../Core/Inc/i2c_lcd.h:23:26: note: expected 'uint8_t *' {aka 'unsigned char *'} but argument is of type 'char *'
+   23 | void lcd_string(uint8_t *str);
+      |                 ~~~~~~~~~^~~
+../Core/Src/washing machine.c:617:14: warning: pointer targets in passing argument 1 of 'lcd_string' differ in signedness [-Wpointer-sign]
+  617 |   lcd_string("Spin plus minus  ");
+      |              ^~~~~~~~~~~~~~~~~~~
+      |              |
+      |              char *
+In file included from ../Core/Src/washing machine.c:3:
+../Core/Inc/i2c_lcd.h:23:26: note: expected 'uint8_t *' {aka 'unsigned char *'} but argument is of type 'char *'
+   23 | void lcd_string(uint8_t *str);
+      |                 ~~~~~~~~~^~~
+../Core/Src/washing machine.c:623:3: warning: incompatible implicit declaration of built-in function 'sprintf'
+  623 |   sprintf(lcd_buff,"Spin time: %d   ",print_Spin);
+      |   ^~~~~~~
+../Core/Src/washing machine.c:623:3: note: include '<stdio.h>' or provide a declaration of 'sprintf'
+../Core/Src/washing machine.c:624:14: warning: pointer targets in passing argument 1 of 'lcd_string' differ in signedness [-Wpointer-sign]
+  624 |   lcd_string(lcd_buff);
+      |              ^~~~~~~~
+      |              |
+      |              char *
+In file included from ../Core/Src/washing machine.c:3:
+../Core/Inc/i2c_lcd.h:23:26: note: expected 'uint8_t *' {aka 'unsigned char *'} but argument is of type 'char *'
+   23 | void lcd_string(uint8_t *str);
+      |                 ~~~~~~~~~^~~
+../Core/Src/washing machine.c:626:14: warning: pointer targets in passing argument 1 of 'lcd_string' differ in signedness [-Wpointer-sign]
+  626 |   lcd_string("Laundry plus minus");
+      |              ^~~~~~~~~~~~~~~~~~~~
+      |              |
+      |              char *
+In file included from ../Core/Src/washing machine.c:3:
+../Core/Inc/i2c_lcd.h:23:26: note: expected 'uint8_t *' {aka 'unsigned char *'} but argument is of type 'char *'
+   23 | void lcd_string(uint8_t *str);
+      |                 ~~~~~~~~~^~~
+../Core/Src/washing machine.c: In function 'Mode_end':
+../Core/Src/washing machine.c:701:15: warning: pointer targets in passing argument 1 of 'lcd_string' differ in signedness [-Wpointer-sign]
+  701 |    lcd_string("apply speed mode");
+      |               ^~~~~~~~~~~~~~~~~~
+      |               |
+      |               char *
+In file included from ../Core/Src/washing machine.c:3:
+../Core/Inc/i2c_lcd.h:23:26: note: expected 'uint8_t *' {aka 'unsigned char *'} but argument is of type 'char *'
+   23 | void lcd_string(uint8_t *str);
+      |                 ~~~~~~~~~^~~
+../Core/Src/washing machine.c:708:15: warning: pointer targets in passing argument 1 of 'lcd_string' differ in signedness [-Wpointer-sign]
+  708 |    lcd_string("apply long mode");
+      |               ^~~~~~~~~~~~~~~~~
+      |               |
+      |               char *
+In file included from ../Core/Src/washing machine.c:3:
+../Core/Inc/i2c_lcd.h:23:26: note: expected 'uint8_t *' {aka 'unsigned char *'} but argument is of type 'char *'
+   23 | void lcd_string(uint8_t *str);
+      |                 ~~~~~~~~~^~~
+../Core/Src/washing machine.c: In function 'mode_view':
+../Core/Src/washing machine.c:722:14: warning: pointer targets in passing argument 1 of 'lcd_string' differ in signedness [-Wpointer-sign]
+  722 |   lcd_string("select mode");
+      |              ^~~~~~~~~~~~~
+      |              |
+      |              char *
+In file included from ../Core/Src/washing machine.c:3:
+../Core/Inc/i2c_lcd.h:23:26: note: expected 'uint8_t *' {aka 'unsigned char *'} but argument is of type 'char *'
+   23 | void lcd_string(uint8_t *str);
+      |                 ~~~~~~~~~^~~
+../Core/Src/washing machine.c:726:14: warning: pointer targets in passing argument 1 of 'lcd_string' differ in signedness [-Wpointer-sign]
+  726 |   lcd_string("select speed mod");
+      |              ^~~~~~~~~~~~~~~~~~
+      |              |
+      |              char *
+In file included from ../Core/Src/washing machine.c:3:
+../Core/Inc/i2c_lcd.h:23:26: note: expected 'uint8_t *' {aka 'unsigned char *'} but argument is of type 'char *'
+   23 | void lcd_string(uint8_t *str);
+      |                 ~~~~~~~~~^~~
+../Core/Src/washing machine.c:730:14: warning: pointer targets in passing argument 1 of 'lcd_string' differ in signedness [-Wpointer-sign]
+  730 |   lcd_string("select  long mod");
+      |              ^~~~~~~~~~~~~~~~~~
+      |              |
+      |              char *
+In file included from ../Core/Src/washing machine.c:3:
+../Core/Inc/i2c_lcd.h:23:26: note: expected 'uint8_t *' {aka 'unsigned char *'} but argument is of type 'char *'
+   23 | void lcd_string(uint8_t *str);
+      |                 ~~~~~~~~~^~~
+../Core/Src/washing machine.c:734:14: warning: pointer targets in passing argument 1 of 'lcd_string' differ in signedness [-Wpointer-sign]
+  734 |   lcd_string("select  user mod");
+      |              ^~~~~~~~~~~~~~~~~~
+      |              |
+      |              char *
+In file included from ../Core/Src/washing machine.c:3:
+../Core/Inc/i2c_lcd.h:23:26: note: expected 'uint8_t *' {aka 'unsigned char *'} but argument is of type 'char *'
+   23 | void lcd_string(uint8_t *str);
+      |                 ~~~~~~~~~^~~
+../Core/Src/washing machine.c:740:14: warning: pointer targets in passing argument 1 of 'lcd_string' differ in signedness [-Wpointer-sign]
+  740 |   lcd_string("speed|long|user");
+      |              ^~~~~~~~~~~~~~~~~
+      |              |
+      |              char *
+In file included from ../Core/Src/washing machine.c:3:
+../Core/Inc/i2c_lcd.h:23:26: note: expected 'uint8_t *' {aka 'unsigned char *'} but argument is of type 'char *'
+   23 | void lcd_string(uint8_t *str);
+      |                 ~~~~~~~~~^~~
+../Core/Src/washing machine.c:746:15: warning: pointer targets in passing argument 1 of 'lcd_string' differ in signedness [-Wpointer-sign]
+  746 |    lcd_string("select|reset|x|x");
+      |               ^~~~~~~~~~~~~~~~~~
+      |               |
+      |               char *
+In file included from ../Core/Src/washing machine.c:3:
+../Core/Inc/i2c_lcd.h:23:26: note: expected 'uint8_t *' {aka 'unsigned char *'} but argument is of type 'char *'
+   23 | void lcd_string(uint8_t *str);
+      |                 ~~~~~~~~~^~~
+../Core/Src/washing machine.c:750:15: warning: pointer targets in passing argument 1 of 'lcd_string' differ in signedness [-Wpointer-sign]
+  750 |    lcd_string("apply save mode    ");
+      |               ^~~~~~~~~~~~~~~~~~~~~
+      |               |
+      |               char *
+In file included from ../Core/Src/washing machine.c:3:
+../Core/Inc/i2c_lcd.h:23:26: note: expected 'uint8_t *' {aka 'unsigned char *'} but argument is of type 'char *'
+   23 | void lcd_string(uint8_t *str);
+      |                 ~~~~~~~~~^~~
+../Core/Src/washing machine.c:755:15: warning: pointer targets in passing argument 1 of 'lcd_string' differ in signedness [-Wpointer-sign]
+  755 |    lcd_string("reset save mode    ");
+      |               ^~~~~~~~~~~~~~~~~~~~~
+      |               |
+      |               char *
+In file included from ../Core/Src/washing machine.c:3:
+../Core/Inc/i2c_lcd.h:23:26: note: expected 'uint8_t *' {aka 'unsigned char *'} but argument is of type 'char *'
+   23 | void lcd_string(uint8_t *str);
+      |                 ~~~~~~~~~^~~
+arm-none-eabi-gcc -o "99.WASHING_MACHINE_PROJ.elf" @"objects.list"   -mcpu=cortex-m4 -T"D:\gyuwon\source\STM32F429ZI\99.WASHING_MACHINE_PROJ\STM32F429ZITX_FLASH.ld" --specs=nosys.specs -Wl,-Map="99.WASHING_MACHINE_PROJ.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: 99.WASHING_MACHINE_PROJ.elf
+ 
+arm-none-eabi-size   99.WASHING_MACHINE_PROJ.elf 
+arm-none-eabi-objdump -h -S  99.WASHING_MACHINE_PROJ.elf  > "99.WASHING_MACHINE_PROJ.list"
+   text	   data	    bss	    dec	    hex	filename
+  42440	    244	   4148	  46832	   b6f0	99.WASHING_MACHINE_PROJ.elf
+Finished building: default.size.stdout
+ 
+Finished building: 99.WASHING_MACHINE_PROJ.list
+ 
+
+20:31:17 Build Finished. 0 errors, 49 warnings. (took 579ms)
+

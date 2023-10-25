@@ -1,0 +1,28 @@
+14:43:45 **** Incremental Build of configuration Debug for project 09.PWM_BUZZER ****
+make -j24 all 
+arm-none-eabi-gcc "../Core/Src/fnd4dight.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F429xx -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/fnd4dight.d" -MT"Core/Src/fnd4dight.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/fnd4dight.o"
+../Core/Src/fnd4dight.c: In function 'fnd4digit_main':
+../Core/Src/fnd4dight.c:47:5: warning: implicit declaration of function 'FND_update' [-Wimplicit-function-declaration]
+   47 |     FND_update(value);
+      |     ^~~~~~~~~~
+../Core/Src/fnd4dight.c: At top level:
+../Core/Src/fnd4dight.c:80:6: warning: conflicting types for 'FND_update'
+   80 | void FND_update(unsigned int value)
+      |      ^~~~~~~~~~
+../Core/Src/fnd4dight.c:47:5: note: previous implicit declaration of 'FND_update' was here
+   47 |     FND_update(value);
+      |     ^~~~~~~~~~
+arm-none-eabi-gcc -o "09.PWM_BUZZER.elf" @"objects.list"   -mcpu=cortex-m4 -T"D:\gyuwon\source\STM32F429ZI\09.PWM_BUZZER\STM32F429ZITX_FLASH.ld" --specs=nosys.specs -Wl,-Map="09.PWM_BUZZER.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: 09.PWM_BUZZER.elf
+ 
+arm-none-eabi-size   09.PWM_BUZZER.elf 
+arm-none-eabi-objdump -h -S  09.PWM_BUZZER.elf  > "09.PWM_BUZZER.list"
+   text	   data	    bss	    dec	    hex	filename
+  45400	    184	   5104	  50688	   c600	09.PWM_BUZZER.elf
+Finished building: default.size.stdout
+ 
+Finished building: 09.PWM_BUZZER.list
+ 
+
+14:43:46 Build Finished. 0 errors, 2 warnings. (took 532ms)
+

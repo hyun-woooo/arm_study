@@ -1,0 +1,8 @@
+#include "led.h"
+
+void led_main(void);
+
+void led_main(void)
+{
+
+}

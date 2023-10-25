@@ -1,0 +1,9 @@
+../Core/Src/dcmotor.c:35:6:dcmotor_pwm_control	8	static
+../Core/Src/dcmotor.c:49:6:swit_led	16	static
+../Core/Src/dcmotor.c:72:6:print_lcd	8	static
+../Core/Src/dcmotor.c:116:6:dcmoter_init	8	static
+../Core/Src/dcmotor.c:122:6:press_BlueB1	16	static
+../Core/Src/dcmotor.c:153:6:press_button0	16	static
+../Core/Src/dcmotor.c:209:6:press_button1	8	static
+../Core/Src/dcmotor.c:234:6:press_button2	8	static
+../Core/Src/dcmotor.c:258:6:press_button3	8	static

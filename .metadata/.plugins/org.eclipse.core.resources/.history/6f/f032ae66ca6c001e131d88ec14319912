@@ -1,0 +1,578 @@
+#include "washing machine.h"
+#include "button.h"
+#include "i2c_lcd.h"
+
+extern void lcd_string(uint8_t *str);
+extern void move_cursor(uint8_t row, uint8_t column);
+extern int get_button(GPIO_TypeDef *GPIO, uint16_t GPIO_PIN,uint8_t button_number);
+extern void lcd_command(uint8_t command);
+
+extern volatile int TIM10_10ms_counter;
+
+
+
+uint8_t back_flag = 0;
+uint8_t back_check_flag = 0;
+uint8_t start_flag = 0;
+uint8_t water_flag = 0;
+uint8_t water_high_num = 2;
+uint16_t set_time = 90;
+uint16_t remain_time = 30;
+uint16_t Laundry = 30;
+uint16_t Rinse =30;
+uint16_t Spin = 30;
+uint8_t step_flag =0; // 0은
+uint8_t default_flag =1;
+uint16_t print_Laundry;
+uint16_t print_Rinse;
+uint16_t print_Spin;
+uint8_t forward_flag = 0;
+uint8_t user_flag = 0;
+uint16_t user_Laundry = 30;
+uint16_t user_Rinse =30;
+uint16_t user_Spin = 30;
+uint8_t user_water_high_num = 2;
+
+uint8_t time_flag = 0;
+uint8_t time_set_flag =0;
+uint16_t Mod_flag = 0;
+
+char lcd_buff[20];
+
+void test(void);
+
+void water_high(void);
+void time_set(void);
+void Mod(void);
+void default_set(void);
+void washing_init(void);
+void go_time(void);
+void start_moter(void);
+void mod_change(void);
+
+void water_end(void)
+{
+		lcd_command(CLEAR_DISPLAY);
+		move_cursor(0,0);
+		lcd_string("  apply comple");
+		move_cursor(1,0);
+		lcd_string("| x| x| x|back");
+		back_check_flag = 1;
+
+}
+void water_high(void)
+{
+	water_high_num = 3;
+
+	for(int i = 0; i<6; i++)
+	{
+		HAL_GPIO_WritePin(GPIOD, 0x01<<i, 1);
+	}
+
+	lcd_command(CLEAR_DISPLAY);
+	move_cursor(0,0);
+	lcd_string("  mode : high");
+	move_cursor(1,0);
+	lcd_string("|1|2|3|apply|");
+}
+void water_middle(void)
+{
+	water_high_num = 2;
+
+	for(int i = 0; i<4; i++)
+	{
+		HAL_GPIO_WritePin(GPIOD, 0x01<<i, 1);
+	}
+
+	lcd_command(CLEAR_DISPLAY);
+	move_cursor(0,0);
+	lcd_string("  mode : middle");
+	move_cursor(1,0);
+	lcd_string("|1|2|3|apply|");
+}
+
+void water_low(void)
+{
+	water_high_num = 1;
+
+
+	for(int i = 0; i<2; i++)
+	{
+		HAL_GPIO_WritePin(GPIOD, 0x01<<i, 1);
+	}
+
+	lcd_command(CLEAR_DISPLAY);
+	move_cursor(0,0);
+	lcd_string("  mode : low");
+	move_cursor(1,0);
+	lcd_string("  |1|2|3|apply|");
+}
+void water_default(void) // bt1 시작
+{
+
+	if(water_flag ==1)
+	{
+		for(int i = 0; i<4; i++)
+		{
+			HAL_GPIO_WritePin(GPIOD, 0x01<<i, 1);
+		}
+
+	}
+}
+
+void time_default(void)
+{
+	lcd_command(CLEAR_DISPLAY);
+	move_cursor(0,0);
+	sprintf(lcd_buff,"total time: %d",set_time);
+	lcd_string(lcd_buff);
+	move_cursor(1,0);
+	lcd_string("Laun Rinse spin");
+	time_set_flag =1;
+}
+void time_change(void)
+{
+	time_flag ++;
+	time_flag %= 3;
+}
+void time_view(void)
+{
+	time_set_flag = 1;
+
+	if(time_flag == 0)
+	{
+
+		move_cursor(0,0);
+		sprintf(lcd_buff,"Laundry time: %d",print_Laundry);
+		lcd_string(lcd_buff);
+		move_cursor(1,0);
+		lcd_string("Rinse plus minus");
+	}
+	if(time_flag == 1)
+	{
+
+		move_cursor(0,0);
+		sprintf(lcd_buff,"Rinse time: %d",print_Rinse);
+		lcd_string(lcd_buff);
+		move_cursor(1,0);
+		lcd_string("Spin plus minus");
+	}
+	if(time_flag == 2)
+	{
+
+		move_cursor(0,0);
+		sprintf(lcd_buff,"Spin time: %d",print_Spin);
+		lcd_string(lcd_buff);
+		move_cursor(1,0);
+		lcd_string("Laundry plus minus");
+	}
+}
+
+void time_plus(void)
+{
+	switch(time_flag)
+	{
+	case 0:
+		print_Laundry += 10;
+		break;
+	case 1:
+		print_Rinse += 10;
+		break;
+	case 2:
+		print_Spin += 10;
+		break;
+	default:
+		break;
+	}
+}
+void time_minus(void)
+{
+	switch(time_flag)
+	{
+	case 0:
+		print_Laundry -= 10;
+		break;
+	case 1:
+		print_Rinse -= 10;
+		break;
+	case 2:
+		print_Spin -= 10;
+		break;
+	default:
+		break;
+	}
+}
+void time_end(void)
+{
+		lcd_command(CLEAR_DISPLAY);
+		move_cursor(0,0);
+		lcd_string("  apply comple");
+		move_cursor(1,0);
+		lcd_string("| x| x| x|back");
+		back_check_flag = 1;
+
+}
+
+void Mod(void)
+{
+
+	if(get_button(BUTTON0_GPIO_Port,BUTTON0_Pin, 0) == BUTTON_PRESS)
+	{
+		Mod_flag = 1;
+		lcd_command(CLEAR_DISPLAY);
+		move_cursor(0,1);
+		lcd_string("speed select");
+
+	}
+	if(get_button(BUTTON1_GPIO_Port,BUTTON1_Pin, 1) == BUTTON_PRESS)
+	{
+		Mod_flag = 2;
+		lcd_command(CLEAR_DISPLAY);
+		move_cursor(0,1);
+		lcd_string("long select");
+	}
+	if(get_button(BUTTON2_GPIO_Port,BUTTON2_Pin, 2) == BUTTON_PRESS)
+	{
+		Mod_flag = 3;
+		if(user_flag==0)
+		{
+			lcd_command(CLEAR_DISPLAY);
+			move_cursor(0,1);
+			lcd_string("usermod select");
+			move_cursor(1,1);
+			lcd_string("again push reset");
+			user_flag=1;
+		}
+		else
+		{
+			lcd_command(CLEAR_DISPLAY);
+			move_cursor(0,1);
+			lcd_string("apply current ");
+			user_flag=0;
+		}
+
+	}
+	if(get_button(BUTTON3_GPIO_Port,BUTTON3_Pin, 3) == BUTTON_PRESS)
+	{
+		switch(Mod_flag)
+		{
+		case 1:
+			move_cursor(0,1);
+			lcd_string("apply speed mod");
+			Laundry = 20;
+			Rinse =20;
+			Spin = 20;
+			break;
+		case 2:
+			move_cursor(0,1);
+			lcd_string("apply long mod");
+			Laundry = 40;
+			Rinse =40;
+			Spin = 40;
+		case 3:
+			move_cursor(0,1);
+			lcd_string("apply user mod");
+			if(user_flag==1)
+			{
+				Laundry = user_Laundry;
+				Rinse = user_Rinse;
+				Spin = user_Spin;
+			}
+			else
+			{
+				user_Laundry = Laundry;
+				user_Rinse = Rinse;
+				user_Spin = Spin;
+			}
+
+		}
+	}
+}
+void washing_init(void)
+{
+
+	print_Laundry = Laundry;
+	print_Rinse = Rinse;
+	print_Spin = Spin;
+
+
+}
+void print_menu(void)
+{
+	move_cursor(0,0);
+	lcd_string("b1:Start b2:High");
+	move_cursor(1,0);
+	lcd_string("b3:Time  b4:Mod");
+}
+
+void default_set(void)
+{
+	if(back_flag==1)
+	{
+		print_menu();
+		water_flag =0;
+		start_flag =0;
+		time_set_flag =0;
+	}
+
+	if(default_flag==1)
+	{
+		washing_init();
+		print_menu();
+	}
+	else
+	{
+		if(back_check_flag ==0 && back_flag ==0)
+		{
+			if(time_set_flag == 0)
+			{
+				if(water_flag == 0)
+				{
+					if(start_flag == 1)
+					{
+						go_time();
+						start_moter();
+					}
+					else
+					{
+						stop_moter();
+
+					}
+				}
+			}
+			else
+			{
+				time_view();
+			}
+		}
+	}
+
+
+	if(get_button(BUTTON0_GPIO_Port,BUTTON0_Pin, 0) == BUTTON_PRESS)
+	{
+		if(time_set_flag == 1)
+		{
+			lcd_command(CLEAR_DISPLAY);
+			time_change();
+		}
+		else
+		{
+			if(water_flag ==0)
+			{
+				if(start_flag ==1)
+				{
+					start_flag = 0;
+				}
+				else
+				{
+					start_flag =1;
+				}
+			}
+			else
+			{
+				HAL_GPIO_WritePin(GPIOD,0xff,0);
+				water_low();
+			}
+
+		}
+		default_flag = 0;
+		back_flag=0;
+
+	}
+	if(get_button(BUTTON1_GPIO_Port,BUTTON1_Pin, 1) == BUTTON_PRESS)
+	{
+		default_flag =0;
+		back_flag=0;
+
+		if(time_set_flag == 1)
+		{
+			time_plus();
+		}
+		else
+		{
+			if(water_flag ==0)
+			{
+				water_flag = 1;
+			}
+			if(water_flag==1)
+			{
+				HAL_GPIO_WritePin(GPIOD,0xff,0);
+				water_middle();
+			}
+		}
+
+	}
+	if(get_button(BUTTON2_GPIO_Port,BUTTON2_Pin, 2) == BUTTON_PRESS)
+	{
+
+		default_flag =0;
+		back_flag =0;
+
+		if(time_set_flag == 1)
+		{
+			time_minus();
+		}
+		else
+		{
+			if(water_flag ==1)
+			{
+				HAL_GPIO_WritePin(GPIOD,0xff,0);
+				water_high();
+			}
+			else
+			{
+				if(time_set_flag==0)
+				{
+					time_set_flag =1;
+				}
+			}
+		}
+
+	}
+	if(get_button(BUTTON3_GPIO_Port,BUTTON3_Pin, 3) == BUTTON_PRESS)
+	{
+		default_flag =0;
+		back_flag =0;
+		if(time_set_flag==1)
+		{
+			time_end();
+			time_set_flag =0;
+		}
+		else
+		{
+			if(water_flag ==1)
+			{
+				water_end();
+				water_flag = 0;
+			}
+			else if(back_check_flag == 1)
+			{
+				back_flag = 1;
+				back_check_flag = 0;
+			}
+		}
+
+	}
+}
+
+void go_time(void)
+{
+	remain_time = print_Laundry + print_Rinse + print_Spin;
+	if(TIM10_10ms_counter % 100==0)
+			{
+			move_cursor(0,0);
+			sprintf(lcd_buff,"remain time:%03d", remain_time);
+			lcd_string(lcd_buff);
+			remain_time--;
+
+			if(forward_flag ==0)
+			{
+				forward_flag =1;
+			}
+			else
+			{
+				forward_flag =0;
+			}
+
+			switch(step_flag)
+			{
+			case 0:
+				print_Laundry--;
+				move_cursor(1,0);
+				sprintf(lcd_buff,"Laundry : %04d",print_Laundry);
+				lcd_string(lcd_buff);
+				HAL_GPIO_WritePin(GPIOE, GPIO_PIN_11, 1);
+				if(print_Laundry == 0)
+				{
+					step_flag = 1;
+				}
+				break;
+			case 1:
+				print_Rinse--;
+				move_cursor(1,0);
+				sprintf(lcd_buff,"Rinse   : %04d",print_Rinse);
+				lcd_string(lcd_buff);
+				HAL_GPIO_WritePin(GPIOE, GPIO_PIN_11, 0);
+				HAL_GPIO_WritePin(GPIOF, GPIO_PIN_14, 1);
+
+				if(print_Rinse == 0)
+				{
+					step_flag = 2;
+				}
+				break;
+			case 2:
+				print_Spin--;
+				move_cursor(1,0);
+				sprintf(lcd_buff,"Spin    : %04d",print_Spin);
+				lcd_string(lcd_buff);
+				HAL_GPIO_WritePin(GPIOF, GPIO_PIN_14, 0);
+				HAL_GPIO_WritePin(GPIOE, GPIO_PIN_13, 1);
+				if(print_Spin == 0)
+				{
+					start_flag =0;
+				}
+				break;
+
+			}
+		}
+}
+void start_moter(void)
+{
+
+		if(forward_flag ==0)
+		{
+			HAL_GPIO_WritePin(GPIOE, GPIO_PIN_8, 1);
+			HAL_GPIO_WritePin(GPIOE, GPIO_PIN_9, 0);
+		}
+		if(forward_flag == 1)
+		{
+			HAL_GPIO_WritePin(GPIOE, GPIO_PIN_8, 0);
+			HAL_GPIO_WritePin(GPIOE, GPIO_PIN_9, 1);
+		}
+}
+
+void stop_moter(void)
+{
+	start_flag = 0;
+	printf("stop_moter");
+
+	lcd_command(CLEAR_DISPLAY);
+	move_cursor(0,0);
+	lcd_string("  washing");
+	move_cursor(1,0);
+	lcd_string("end");
+
+	HAL_GPIO_WritePin(GPIOF, GPIO_PIN_8, 1);
+	HAL_GPIO_WritePin(GPIOE, GPIO_PIN_9, 1);
+}
+void test(void)
+{
+	if(get_button(BUTTON0_GPIO_Port,BUTTON0_Pin, 0) == BUTTON_PRESS)
+	{
+		printf("1 on\n");
+		HAL_GPIO_WritePin(GPIOD, 0xff, 1);
+		move_cursor(1,1);
+		lcd_string("1 print");
+	}
+	if(get_button(BUTTON1_GPIO_Port,BUTTON1_Pin, 1) == BUTTON_PRESS)
+	{
+		printf("2 on\n");
+		HAL_GPIO_WritePin(GPIOD, 0xff, 0);
+	}
+	if(get_button(BUTTON2_GPIO_Port,BUTTON2_Pin, 2) == BUTTON_PRESS)
+	{
+		printf("3 on\n");
+		HAL_GPIO_WritePin(GPIOE, GPIO_PIN_13, 1); //red
+	}
+	if(get_button(BUTTON3_GPIO_Port,BUTTON3_Pin, 3) == BUTTON_PRESS)
+	{
+		printf("4 on\n");
+		HAL_GPIO_TogglePin(GPIOF,GPIO_PIN_14); // yellow
+	}
+	if(get_button(BUTTON4_GPIO_Port,BUTTON4_Pin, 4) == BUTTON_PRESS)
+	{
+		printf("5 on\n");
+		HAL_GPIO_WritePin(GPIOE, GPIO_PIN_11, 1); //green
+	}
+
+}

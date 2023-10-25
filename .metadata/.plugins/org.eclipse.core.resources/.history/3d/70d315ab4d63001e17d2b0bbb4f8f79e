@@ -1,0 +1,79 @@
+#include "led.h"
+
+void led_main(void);
+void led_all_on(void);
+void led_all_off(void);
+void led_array(void);
+
+	uint16_t arr[8] = {0x0001,0x0002,0x0004,0x0008,0x0010,0x0020,0x0040,0x0080};
+void led_main(void)
+{
+		int i=0;
+	while(1)
+	{
+		//HAL_GPIO_TogglePin(GPIOD, GPIO_PIN_All);
+		//HAL_Delay(500);
+		//phase#1
+//		led_all_on();
+//		HAL_Delay(300);
+//		led_all_off();
+//		HAL_Delay(300);
+
+		// led_array();
+		for(i;i<8;i++)
+		{
+			HAL_GPIO_WritePin(GPIOD, arr[i], 1);
+			HAL_Delay(300);
+			HAL_GPIO_WritePin(GPIOD, arr[i], 0);
+			HAL_Delay(300);
+		}
+
+	}
+}
+
+void led_all_on(void)
+{
+//	HAL_GPIO_WritePin(GPIOD, GPIO_PIN_0|GPIO_PIN_1|GPIO_PIN_2|GPIO_PIN_3|
+//			GPIO_PIN_4|GPIO_PIN_5|GPIO_PIN_6|GPIO_PIN_7, 1); // 1 = set 0 = reset
+	HAL_GPIO_WritePin(GPIOD,0xff,1);
+}
+void led_all_off(void)
+{
+//	HAL_GPIO_WritePin(GPIOD, GPIO_PIN_0|GPIO_PIN_1|GPIO_PIN_2|GPIO_PIN_3|
+//			GPIO_PIN_4|GPIO_PIN_5|GPIO_PIN_6|GPIO_PIN_7, 0);  // 0 = reset
+	HAL_GPIO_WritePin(GPIOD,0xff,0);
+}
+void led_array(void)
+{
+	HAL_GPIO_WritePin(GPIOD,GPIO_PIN_0,1);
+	HAL_Delay(300);
+	HAL_GPIO_WritePin(GPIOD,GPIO_PIN_1,1);
+	HAL_Delay(300);
+	HAL_GPIO_WritePin(GPIOD,GPIO_PIN_2,1);
+	HAL_Delay(300);
+	HAL_GPIO_WritePin(GPIOD,GPIO_PIN_3,1);
+	HAL_Delay(300);
+	HAL_GPIO_WritePin(GPIOD,GPIO_PIN_4,1);
+	HAL_Delay(300);
+	HAL_GPIO_WritePin(GPIOD,GPIO_PIN_5,1);
+	HAL_Delay(300);
+	HAL_GPIO_WritePin(GPIOD,GPIO_PIN_6,1);
+	HAL_Delay(300);
+	HAL_GPIO_WritePin(GPIOD,GPIO_PIN_7,1);
+	HAL_Delay(300);
+	HAL_GPIO_WritePin(GPIOD,GPIO_PIN_7,0);
+	HAL_Delay(300);
+	HAL_GPIO_WritePin(GPIOD,GPIO_PIN_6,0);
+	HAL_Delay(300);
+	HAL_GPIO_WritePin(GPIOD,GPIO_PIN_5,0);
+	HAL_Delay(300);
+	HAL_GPIO_WritePin(GPIOD,GPIO_PIN_4,0);
+	HAL_Delay(300);
+	HAL_GPIO_WritePin(GPIOD,GPIO_PIN_3,0);
+	HAL_Delay(300);
+	HAL_GPIO_WritePin(GPIOD,GPIO_PIN_2,0);
+	HAL_Delay(300);
+	HAL_GPIO_WritePin(GPIOD,GPIO_PIN_1,0);
+	HAL_Delay(300);
+	HAL_GPIO_WritePin(GPIOD,GPIO_PIN_0,0);
+}

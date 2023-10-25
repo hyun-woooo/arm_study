@@ -1,0 +1,29 @@
+17:18:56 **** Incremental Build of configuration Debug for project 06.PWM_DCMOTOR_SERVONITIR ****
+make -j24 all 
+arm-none-eabi-gcc "../Core/Src/dcmotor.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F429xx -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/dcmotor.d" -MT"Core/Src/dcmotor.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/dcmotor.o"
+../Core/Src/dcmotor.c: In function 'dcmotor_pwm_control':
+../Core/Src/dcmotor.c:59:4: warning: implicit declaration of function 'printf' [-Wimplicit-function-declaration]
+   59 |    printf("led count : %d",led_count);
+      |    ^~~~~~
+../Core/Src/dcmotor.c:59:4: warning: incompatible implicit declaration of built-in function 'printf'
+../Core/Src/dcmotor.c:3:1: note: include '<stdio.h>' or provide a declaration of 'printf'
+    2 | #include "dcmotor.h"
+  +++ |+#include <stdio.h>
+    3 | 
+../Core/Src/dcmotor.c:62:3: warning: incompatible implicit declaration of built-in function 'printf'
+   62 |   printf("CCR_UP_Value : %d",CCR_UP_Value);
+      |   ^~~~~~
+../Core/Src/dcmotor.c:62:3: note: include '<stdio.h>' or provide a declaration of 'printf'
+../Core/Src/dcmotor.c:82:4: warning: incompatible implicit declaration of built-in function 'printf'
+   82 |    printf("CCR_DOWN_Value : %d",CCR_DOWN_Value);
+      |    ^~~~~~
+../Core/Src/dcmotor.c:82:4: note: include '<stdio.h>' or provide a declaration of 'printf'
+../Core/Src/dcmotor.c:90:8: error: 'toggle_flag' undeclared (first use in this function)
+   90 |     if(toggle_flag =1)
+      |        ^~~~~~~~~~~
+../Core/Src/dcmotor.c:90:8: note: each undeclared identifier is reported only once for each function it appears in
+make: *** [Core/Src/subdir.mk:58: Core/Src/dcmotor.o] Error 1
+"make -j24 all" terminated with exit code 2. Build might be incomplete.
+
+17:18:56 Build Failed. 2 errors, 4 warnings. (took 219ms)
+
